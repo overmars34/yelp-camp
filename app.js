@@ -12,10 +12,12 @@ var express         = require("express"),
     seedDB          = require("./seeds"),
     campRoutes      = require("./routes/campgrounds"),
     commentRoutes   = require("./routes/comments"),
-    authRoutes      = require("./routes/index");
+    authRoutes      = require("./routes/index"),
+    url             = process.env.DATABASEURL || "mongodb://localhost/yelp_camp";
     
-//mongoose.connect("mongodb://localhost/yelp_camp", {useMongoClient: true});
-mongoose.connect("mongodb://overmars34:31001357mc@ds123896.mlab.com:23896/jliusapps", {useMongoClient: true});
+mongoose.connect(url, {useMongoClient: true});
+
+console.log(process.env.DATABASEURL);
 
 app.set("view engine", "ejs");   
 app.use(bodyParser.urlencoded({ extended: true }));
